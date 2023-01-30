@@ -8,7 +8,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story = (args) => {
-  return <Button />;
+  return <Button {...args}>hello world</Button>;
 };
 
 export const Default = Template.bind({});

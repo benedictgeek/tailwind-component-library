@@ -1,42 +1,75 @@
-import { HTMLProps } from "react";
+import { forwardRef, HTMLAttributes, HTMLProps, useMemo } from "react";
 
-interface ButtonpProps extends HTMLProps<HTMLButtonElement> {
-  type?: "primary" | "secondary" | "tertiary";
-  variant?: "contained" | "outlined" | "text";
+type ButtonType = "primary" | "secondary" | "tertiary";
+type VariantType = "contained" | "outlined" | "text";
+type SizeType = "small" | "medium" | "large";
+
+interface ButtonpProps extends HTMLAttributes<HTMLButtonElement> {
+  type?: ButtonType;
+  variant?: VariantType;
+  size?: SizeType;
 }
 
-export const Button = ({
-  type = "primary",
-  variant = "contained",
-}: ButtonpProps) => {
-  let computedClass = "py-2 px-4 ";
+const getSizestyles = (size: SizeType) => {
+  switch (size) {
+    case "small":
+      return "py-2 px-5";
+    case "large":
+      return "py-3 px-6";
 
+    case "medium":
+      return "py-2.5 px-5";
+  }
+};
+
+const getTypeStyles = (type: ButtonType) => {
   switch (type) {
     case "primary":
-      break;
+      return "";
 
     default:
-      break;
+      return "";
   }
+};
 
+const getVariantStyles = (variant: VariantType) => {
   switch (variant) {
     case "contained":
-      computedClass +=
-        "bg-purple-500 rounded text-base text-white hover:bg-purple-700";
-      break;
+      return `
+      bg-purple-500 rounded text-base text-white hover:bg-purple-700 hover:-transition-colors duration-300
+      `;
 
     case "outlined":
-      computedClass +=
-        "border border-purple-700 rounded text-base text-purple-700 hover:bg-purple-100";
-      break;
+      return "border border-purple-700 rounded text-base text-purple-700 hover:bg-purple-100";
 
     case "text":
-      computedClass += "text-base rounded text-purple-700 hover:bg-purple-100";
-      break;
-
-    default:
-      break;
+      return "text-base rounded text-purple-700 hover:bg-purple-100";
   }
-
-  return <button className={`${computedClass}`}>Hello World</button>;
 };
+
+export const Button = forwardRef<HTMLButtonElement, ButtonpProps>(
+  (
+    {
+      type = "primary",
+      variant = "contained",
+      size = "medium",
+      ...props
+    }: ButtonpProps,
+    ref
+  ) => {
+    const baseClasses = "font-bold";
+    const computedClasses = useMemo(() => {
+      return [
+        getSizestyles(size),
+        getTypeStyles(type),
+        getVariantStyles(variant),
+      ].join(" ");
+    }, [type, variant, size]);
+
+    return (
+      <button ref={ref} className={`${baseClasses} ${computedClasses}`}>
+        {props.children}
+      </button>
+    );
+  }
+);
