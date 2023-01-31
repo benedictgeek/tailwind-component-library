@@ -1,5 +1,6 @@
 import { Meta, Story } from "@storybook/react";
 import { FormGroup } from "../formGroup/formGroup";
+import { SearchIcon } from "../icons";
 import { Input } from "./input";
 const meta: Meta = {
   title: "Input",
@@ -20,5 +21,18 @@ const WithFormGroup: Story = (args) => {
   );
 };
 
+const WithIconsTemplate: Story = (args) => {
+  return (
+    <FormGroup label="Phone Number" htmlFor="phoneNumber">
+      <Input
+        {...args}
+        id="phoneNumber"
+        iconRight={<SearchIcon color="black" />}
+      />
+    </FormGroup>
+  );
+};
+
 export const Default = Template.bind({});
 export const WithLabel = WithFormGroup.bind({});
+export const WithIcons = WithIconsTemplate.bind({});
