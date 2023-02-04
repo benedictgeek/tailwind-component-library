@@ -8,7 +8,7 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story = (args) => {
-  return <CheckBox {...args} />;
+  return <CheckBox {...args} label={"Please check this box to continue"} />;
 };
 
 export const Default = Template.bind({});
