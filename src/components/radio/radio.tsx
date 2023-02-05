@@ -5,17 +5,22 @@ export interface RadioProps
   label?: ReactNode;
 }
 
-export const Radio = forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
-  return (
-    <label className="relative group">
-      <input
-        type={"radio"}
-        {...props}
-        className="opacity-0 absolute peer/radio"
-      />
-      <span
-        className={`absolute h-6 w-6 rounded-full bg-[#eee] group-hover:bg-[#ccc]
+export const Radio = forwardRef<HTMLInputElement, RadioProps>(
+  ({ label, title, className, ...props }, ref) => {
+    return (
+      <label className={`relative block cursor-pointer group ${className}`}>
+        {label && <div className="ml-7">{label}</div>}
+        <input
+          type={"radio"}
+          {...props}
+          className="opacity-0 h-0 w-0 absolute peer/radio"
+          ref={ref}
+        />
+        <span
+          title={title}
+          className={`absolute h-6 w-6 rounded-full bg-[#eee] group-hover:bg-[#ccc]
             transition-colors
+            top-0 left-0
             after:content-['']
             after:hidden
             flex items-center justify-center
@@ -27,7 +32,8 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
             peer-checked/radio:after:bg-white
             peer-checked/radio:after:rounded-full
         `}
-      ></span>
-    </label>
-  );
-});
+        ></span>
+      </label>
+    );
+  }
+);

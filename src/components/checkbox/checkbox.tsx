@@ -6,9 +6,9 @@ export interface CheckBoxProps
 }
 
 export const CheckBox = forwardRef<HTMLInputElement, CheckBoxProps>(
-  ({ label, title, ...props }, ref) => {
+  ({ label, title, className, ...props }, ref) => {
     return (
-      <label className="relative cursor-pointer group">
+      <label className={`relative block cursor-pointer group ${className}`}>
         {label && <div className="ml-7">{label}</div>}
         <input
           className={`opacity-0 w-0 h-0 cursor-pointer absolute peer/input`}

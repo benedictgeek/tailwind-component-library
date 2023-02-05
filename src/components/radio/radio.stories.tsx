@@ -11,7 +11,9 @@ export default meta;
 const Template: Story = (args) => {
   return (
     <>
-      <Radio {...args} />
+      <Radio {...args} label="My option one" name="radioButton" className="my-2"/>
+      <Radio {...args} label="My option two" name="radioButton" className="my-2"/>
+      <Radio {...args} label="My option three" name="radioButton" className="my-2"/>
     </>
   );
 };
