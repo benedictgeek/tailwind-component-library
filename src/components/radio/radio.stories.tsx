@@ -9,9 +9,11 @@ const meta: Meta = {
 export default meta;
 
 const Template: Story = (args) => {
-  return <>
-  <Radio {...args} />
-  </> ;
+  return (
+    <>
+      <Radio {...args} />
+    </>
+  );
 };
 
 export const Default = Template.bind({});
