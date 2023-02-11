@@ -1,8 +1,18 @@
 {
   "name": "tailwind-component-library",
-  "private": true,
   "version": "0.0.0",
   "type": "module",
+  "files": [
+    "dist"
+  ],
+  "types": "./dist/index.d.ts",
+  "main": "./dist/tailwind-component-library.umd.cjs",
+  "exports": {
+    ".": {
+      "import": "./dist/tailwind-component-library.js",
+      "require": "./dist/tailwind-component-library.umd.cjs"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -18,7 +28,8 @@
   "dependencies": {
     "@storybook/react": "^6.5.16",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "vite-plugin-dts": "^1.7.2"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^6.5.16",
