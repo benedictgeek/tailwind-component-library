@@ -11,6 +11,6 @@ export default defineConfig({
       entry: path.resolve(__dirname, "src/index.tsx"),
       name: "tailwind_component_library",
     },
-    copyPublicDir: true,
+    copyPublicDir: false,
   },
 });

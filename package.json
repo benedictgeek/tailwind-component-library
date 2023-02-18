@@ -16,7 +16,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && npm run build:css && cp ./tailwind.config.cjs ./public/tailwind.config.cjs",
+    "build": "tsc && vite build && cp ./tailwind.config.cjs ./dist/tailwind.config.cjs",
     "preview": "vite preview",
     "//": "New scripts to run and build Storybook with Tailwind",
     "storybook": "concurrently \"npm:watch:*\"",
